@@ -1,0 +1,15 @@
+.simpletimer .days {
+  display: inline-block;
+}
+.simpletimer .hours {
+  display: inline-block;
+}
+.simpletimer .minutes {
+  display: inline-block;
+}
+.simpletimer .seconds {
+  display: inline-block;
+}
+.simpletimer .clearDiv {
+  clear: both;
+}
