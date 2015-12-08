@@ -1,6 +1,7 @@
 .flip-clock-wrapper ul {
   float: none;
   display: inline-block;
+  padding: 0;
 }
 .flip-clock-wrapper span {
   float: none;
