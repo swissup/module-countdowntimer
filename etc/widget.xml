@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="swissup_timer_simple" class="Swissup\Countdowntimer\Block\SimpleTimer" is_email_compatible="true"
+            placeholder_image="Swissup_Highlight::images/product_all.png" ttl="86400">
+            <label translate="true">Simple countdown timer</label>
+            <description></description>
+            <parameters>
+                <parameter name="date" xsi:type="text" required="true" visible="true">
+                    <label translate="true">End date and time</label>
+                    <description>Input format YYYY-MM-DD HH24:MI:SS</description>
+                </parameter>
+                <parameter name="display_days" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno">
+                    <label translate="true">Display days number</label>
+                    <description>"No" - hours can be greater than 24</description>
+                </parameter>
+                <parameter name="inlinecss" xsi:type="text" required="false" visible="true">
+                    <label translate="true">Simple timer CSS</label>
+                    <description>Default inline CSS for timer. Example: font-weight:bold; color:#6600CC;</description>
+                </parameter>
+            </parameters>
+    </widget>
+</widgets>
