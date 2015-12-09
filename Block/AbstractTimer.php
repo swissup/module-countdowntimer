@@ -19,8 +19,8 @@ class AbstractTimer extends \Magento\Framework\View\Element\Template
             // date_default_timezone_set(Mage::getStoreConfig('general/locale/timezone'));
             $date = strtotime($date);
             date_default_timezone_set($defaultTimeZone);
-            $widgetDate = timestamp($date);
-            $currDate = timestamp(time());
+            $widgetDate = \timestamp($date);
+            $currDate = \timestamp(time());
             $secondsLeft = $widgetDate - $currDate;
             if ($secondsLeft < 0) {
                 $secondsLeft = 1;

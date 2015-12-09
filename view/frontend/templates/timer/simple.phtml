@@ -1,1 +1,20 @@
-<span>template text</span>
+<?php
+    $secondsLeft = $this->getSecondsLeft();
+    $daysLeft = 0;
+    if ($this->getDisplayDays()) {
+        $daysLeft = $this->getDaysLeft();
+        $secondsLeft = $secondsLeft - $daysLeft * (24*60*60);
+    }
+?>
+<div class="<?php echo $this->getClassname()?>" style="<?php echo $this->getInlinestyle()?>" data-seconds-left=<?php echo $secondsLeft?>>
+<?php if ($daysLeft > 0 ): ?>
+    <span class="days"><?php echo $daysLeft." day(s)"; ?></span>
+<?php endif ?>
+</div>
+<script type="text/javascript">
+    require([
+        'simpletimer'
+    ], function () {
+    jQuery('.<?php echo $this->getTimerBaseClass()?>').startTimer();
+    });
+</script>
