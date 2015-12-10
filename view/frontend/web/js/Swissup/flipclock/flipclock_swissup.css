@@ -1,3 +1,6 @@
+.flip-clock-wrapper {
+  text-align: left;
+}
 .flip-clock-wrapper ul {
   float: none;
   display: inline-block;

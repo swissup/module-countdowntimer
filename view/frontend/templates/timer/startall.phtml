@@ -1,0 +1,25 @@
+
+<script type="text/javascript">
+    // start flip timers
+    require([
+        'flipclock'
+    ], function () {
+    jQuery('.<?php echo \Swissup\Countdowntimer\Block\FlipTimer::getTimerBaseClass() ?>').each(
+        function (index, value) {
+            jQuery(this).FlipClock(
+                jQuery(this).attr('data-seconds-left'),
+                {
+                    clockFace: jQuery(this).attr('data-flipface'),
+                    countdown: true
+                }
+            )
+        }
+    );
+    });
+    // start simple timers
+    require([
+        'simpletimer'
+    ], function () {
+    jQuery('.<?php echo \Swissup\Countdowntimer\Block\SimpleTimer::getTimerBaseClass()?>').startTimer();
+    });
+</script>

@@ -8,4 +8,9 @@
         <!-- styles for simple timer -->
         <css src="Swissup_Countdowntimer::js/Swissup/simpletimer/simpletimer.css"/>
     </head>
+    <body>
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template" name="swissup.cdt.start" template="Swissup_Countdowntimer::timer/startall.phtml" />
+        </referenceContainer>
+    </body>
 </page>

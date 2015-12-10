@@ -9,18 +9,17 @@ class AbstractTimer extends \Magento\Framework\View\Element\Template
 
     public function getSecondsLeft()
     {
-        $secondsLeft = $this->getData('seconds_left');
+        $secondsLeft = $this->_getData('seconds_left');
         if ($secondsLeft) {
             return $secondsLeft;
         }
-        $date = $this->getData('date');
+        $date = $this->_getData('date');
         if ($date) {
             $defaultTimeZone = date_default_timezone_get();
-            // date_default_timezone_set(Mage::getStoreConfig('general/locale/timezone'));
-            $date = strtotime($date);
+            date_default_timezone_set($this->_localeDate->getConfigTimezone());
+            $widgetDate = strtotime($date);
             date_default_timezone_set($defaultTimeZone);
-            $widgetDate = \timestamp($date);
-            $currDate = \timestamp(time());
+            $currDate = $this->_localeDate->date()->getTimestamp();
             $secondsLeft = $widgetDate - $currDate;
             if ($secondsLeft < 0) {
                 $secondsLeft = 1;
