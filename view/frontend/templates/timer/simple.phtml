@@ -1,14 +1,17 @@
-<?php
-    $secondsLeft = $this->getSecondsLeft();
-    $daysLeft = 0;
+<div<?php
+    echo ' class="'.$this->getClassname().'"';
     if ($this->getDisplayDays()) {
-        $daysLeft = $this->getDaysLeft();
-        $secondsLeft = $secondsLeft - $daysLeft * (24*60*60);
+        echo ' data-display-days="1"';
     }
-?>
-
-<div class="<?php echo $this->getClassname()?>" style="<?php echo $this->getInlinestyle()?>" data-seconds-left=<?php echo $secondsLeft?>>
-<?php if ($daysLeft > 0 ): ?>
-    <span class="days"><?php echo $daysLeft." day(s)"; ?></span>
-<?php endif ?>
+    if ($this->hasData('date')) {
+        echo ' data-end-datetime-utc="'.$this->getDateInTimestamp().'"';
+    }
+    if (!$this->hasData('date') && $this->getSecondsLeft()) {
+        echo ' data-seconds-left="'.$this->getSecondsLeft().'"';
+    }
+    if ($this->getInlinestyle()) {
+        echo ' style="'.$this->getInlinestyle().'"';
+    }
+?>>
+    <span class="days"></span>
 </div>

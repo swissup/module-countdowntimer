@@ -30,6 +30,18 @@ class AbstractTimer extends \Magento\Framework\View\Element\Template
         return $secondsLeft;
     }
 
+    /*
+     *  Date from widget (considering that user input store locale datetime)
+     *  return @timestamp - integer/timestamp
+     */
+    public function getDateInTimestamp(){
+        $defaultTimeZone = date_default_timezone_get();
+        date_default_timezone_set($this->_localeDate->getConfigTimezone());
+        $timestamp = strtotime($this->_getData('date'));
+        date_default_timezone_set($defaultTimeZone);
+        return $timestamp;
+    }
+
     public function getDaysLeft()
     {
         $result = 0;

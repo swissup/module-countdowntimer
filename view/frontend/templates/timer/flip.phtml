@@ -1,3 +1,12 @@
-<div class="<?php echo $this->getClassname()?>" data-seconds-left ="<?php echo $this->getSecondsLeft()?>" data-flipface="<?php echo $this->getFlipface()?>">
-    Flip timer can not find jQuery
-</div>
+<div<?php
+    echo ' class="'.$this->getClassname().'"';
+    if ($this->getFlipface()) {
+        echo ' data-flipface="'.$this->getFlipface().'"';
+    }
+    if ($this->hasData('date')) {
+        echo ' data-end-datetime-utc="'.$this->getDateInTimestamp().'"';
+    }
+    if (!$this->hasData('date') && $this->getSecondsLeft()) {
+        echo ' data-seconds-left="'.$this->getSecondsLeft().'"';
+    }
+?>>Flip timer can not find jQuery</div>

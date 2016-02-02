@@ -97,7 +97,8 @@
     } else if(minutesLeft) {
       return parseFloat(minutesLeft) * 60;
     }else {
-      throw 'Missing time data';
+      // throw 'Missing time data'; - oroginal code
+      console.log('Trying to start simple timer when countdown already at 0');
     }
   };
 

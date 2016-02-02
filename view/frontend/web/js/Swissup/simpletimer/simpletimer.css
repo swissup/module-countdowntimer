@@ -1,3 +1,6 @@
+.simpletimer {
+	display: inline-block;
+}
 .simpletimer .days {
   display: inline-block;
 }
