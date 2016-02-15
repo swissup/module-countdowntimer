@@ -7,7 +7,7 @@ class FlipTimer
         implements \Magento\Widget\Block\BlockInterface
 {
     const TIMER_FLIP_TEMPLATE = 'timer/flip.phtml';
-    const TIMER_BASE_CLASS_FLIP = 'tm-cdt-flip';
+    const TIMER_BASE_CLASS_FLIP = 'tm-cdt-flip not-started';
 
     protected function _construct() {
         if (!$this->hasData('template')) {

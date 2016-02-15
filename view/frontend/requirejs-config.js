@@ -2,8 +2,9 @@ var config = {
 
     map: {
         '*': {
-            'flipclock' : 'Swissup_Countdowntimer/js/Swissup/flipclock/flipclock',
-            'simpletimer' : 'Swissup_Countdowntimer/js/Swissup/simpletimer/simpletimer'
+            'flipclock' : 'Swissup_Countdowntimer/js/swissup/countdowntimer/flipclock/flipclock',
+            'simpletimer' : 'Swissup_Countdowntimer/js/swissup/countdowntimer/simpletimer/simpletimer',
+            'starttimers' : 'Swissup_Countdowntimer/js/swissup/countdowntimer/starttimers'
         }
     },
 

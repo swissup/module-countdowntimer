@@ -1,0 +1,96 @@
+/*** FLIPTIMER TM STYLES ***/
+.flip-clock-wrapper { display: inline-block; width: auto; }
+.flip-clock-wrapper ul { float: none; display: inline-block; padding: 0; }
+.flip-clock-wrapper span { float: none; display: inline-block; }
+/* reset STD styles */
+.std .flip-clock-wrapper ul { background: none; list-style: none; padding-left: 0; }
+.std .flip-clock-wrapper li { font-family: "Helvetica Neue", Helvetica, sans-serif !important; font-style: normal !important; }
+.std .flip-clock-wrapper ul li { margin-left: 0; }
+/* small flipclock style */
+.flip-small ul { border-radius: 2px; font-weight: normal !important; height: 28px; margin: 1px !important; width: 19px; }
+.flip-small ul li { line-height: 28px !important; }
+.flip-small ul li a div.up::after { top: 14px; }
+.flip-small ul li a div.down { border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; }
+.flip-small ul li a div div.inn { font-size: 24px; padding-left: 1px; padding-top: 0px; padding-bottom: 1px; border-radius: 2px; }
+.flip-small .flip { box-shadow: 0 1px 2px rgba(0, 0, 0, 0.7); }
+.flip-small .flip-clock-divider { height: 28px; width: 6px; }
+.flip-small .flip-clock-divider:first-child { width: 0; }
+.flip-small .flip-clock-divider .flip-clock-label { right: -32px; top: -16px; }
+.flip-small .flip-clock-divider.minutes .flip-clock-label { right: -40px; }
+.flip-small .flip-clock-divider.seconds .flip-clock-label { right: -42px; }
+.flip-small .flip-clock-dot.top { top: 9px; }
+.flip-small .flip-clock-dot.bottom { bottom: 6px; }
+.flip-small .flip-clock-dot { left: 1px; height: 4px; width: 4px; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.7); }
+.flip-small.flip-clock-wrapper { margin: 0; margin-top: 11px; font-size: 10px; }
+/* medium flipclock style */
+.flip-medium ul { border-radius: 4px; font-weight: normal !important; height: 56px; margin: 2px !important;
+  width: 38px; padding-left: 0px !important; }
+.flip-medium ul li { line-height: 56px !important; }
+.flip-medium ul li a div.up::after { top: 27px;}
+.flip-medium ul li a div.down { border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; }
+.flip-medium ul li a div div.inn { font-size: 58px; padding-left: 1px; padding-top: 0px; padding-bottom: 1px;
+  border-radius: 4px; }
+.flip-medium .flip { box-shadow: 0 2px 3px rgba(0, 0, 0, 0.7); }
+.flip-medium .flip-clock-divider { height: 56px; width: 12px; }
+.flip-medium .flip-clock-divider:first-child { width: 0; }
+.flip-medium .flip-clock-divider .flip-clock-label { right: -60px; top: -18px; }
+.flip-medium .flip-clock-divider.minutes .flip-clock-label { right: -64px; }
+.flip-medium .flip-clock-divider.seconds .flip-clock-label { right: -66px; }
+.flip-medium .flip-clock-dot.top { top: 15px; }
+.flip-medium .flip-clock-dot.bottom { bottom: 12px; }
+.flip-medium .flip-clock-dot { left: 2px; height: 8px; width: 8px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.7); }
+.flip-medium.flip-clock-wrapper { margin: 0; margin-top: 14px; font-size: 12px; }
+/* large flipclock style */
+.flip-large ul { margin: 5px !important; }
+.flip-large ul li { line-height: 87px !important; }
+.flip-large ul li a div div.inn { font-size: 92px; }
+/* light flipclock style */
+.flip-light ul { font-weight: bolder; }
+.flip-light ul li a div.up::after { background-color: transparent; }
+.flip-light .flip { box-shadow: none; border: 1px solid #666; }
+.flip-light ul li a div div.inn { background-color: #fff; color: #444; text-shadow: 0 1px 1px #000; text-shadow: none; }
+.flip-light .flip-clock-dot { display: none; }
+/* SHADOW */
+.flip-light  ul.play li.flip-clock-before .up .shadow {
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.0)), color-stop(100%, rgba(0, 0, 0, 0.5)));
+  background: linear, top, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.5) 100%;
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: linear, to bottom, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.5) 100%;
+}
+.flip-light  ul.play li.flip-clock-active .up .shadow {
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.0)), color-stop(100%, rgba(0, 0, 0, 0.5)));
+  background: linear, top, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.5) 100%;
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: linear, to bottom, rgba(0, 0, 0, 0.0) 0%, rgba(0, 0, 0, 0.5) 100%;
+}
+/*DOWN*/
+.flip-light  ul.play li.flip-clock-before .down .shadow {
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.5)), color-stop(100%, rgba(0, 0, 0, 0.0)));
+  background: linear, top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0) 100%;
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0) 100%);
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0) 100%);
+  background: linear, to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0) 100%;
+}
+.flip-light ul.play li.flip-clock-active .down .shadow {
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.5)), color-stop(100%, rgba(0, 0, 0, 0.0)));
+  background: linear, top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0) 100%;
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0) 100%);
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0) 100%);
+  background: linear, to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0) 100%;
+}
+.flip-no-labels.flip-clock-wrapper { margin-top: 0; }
+.flip-no-labels .flip-clock-label { display: none; }
+/*** SIMPLE TIMER STYLES ***/
+.simpletimer { display: inline-block; }
+.simpletimer .days { display: inline-block; }
+.simpletimer .days:after { content: "\00a0"; }
+.simpletimer .hours { display: inline-block; }
+.simpletimer .minutes { display: inline-block; }
+.simpletimer .seconds { display: inline-block; }
+.simpletimer .clearDiv { clear: both; }

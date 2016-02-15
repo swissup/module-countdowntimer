@@ -7,7 +7,7 @@ class SimpleTimer
         implements \Magento\Widget\Block\BlockInterface
 {
     const TIMER_SIMPLE_TEMPLATE = 'timer/simple.phtml';
-    const TIMER_BASE_CLASS_SIMPLE = 'tm-cdt-simple';
+    const TIMER_BASE_CLASS_SIMPLE = 'tm-cdt-simple not-started';
 
     public function _construct()
     {
