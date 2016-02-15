@@ -1,5 +1,5 @@
 {
-    "name": "Swissup/Countdowntimer",
+    "name": "swissup/countdowntimer",
     "description": "Countdown timer widgets",
     "type": "magento2-module",
     "version": "0.1.0",
