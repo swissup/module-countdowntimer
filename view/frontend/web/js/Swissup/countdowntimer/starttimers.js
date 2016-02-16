@@ -1,36 +1,38 @@
 define(["flipclock", "simpletimer"], function($) {
   var tmCountdownTimers = new function() {
 
-    this.timerFlipClassSelector = '.tm-cdt-flip.not-started';
-    this.timerSimpleClassSelector = '.tm-cdt-simple.not-started';
-    this.timerNotStartedClass ='not-started';
+    this.timerFlip = '.tm-cdt-flip';
+    this.timerSimple = '.tm-cdt-simple';
+    this.timerNotStarted ='.not-started';
     this.localeName = 'customer_locale',
 
-    this.setAttributeSecondsLeft = function (htmlObj) {
-      if (htmlObj.hasAttribute('data-end-datetime-utc')) {
-        var secondsLeft = parseInt(htmlObj.getAttribute('data-end-datetime-utc'));
-        secondsLeft -= Math.floor(Date.now() / 1000);
-        if (secondsLeft < 0) {secondsLeft = 0};
-        htmlObj.setAttribute('data-seconds-left', secondsLeft);
+    this.getSecondsLeft = function (obj) {
+      var endDate = jQuery(obj).data('end-datetime-utc');
+      var secLeft = 0;
+      if (endDate) {
+        secLeft = endDate - Math.floor(Date.now() / 1000);
+        secLeft = (secLeft < 0) ? 0 : secLeft;
       }
+      return secLeft;
     };
 
-    this.setDaysForSimpleTimer = function (htmlObj) {
-      if (!htmlObj.hasAttribute('data-display-days')) { return; };
-      var secondsLeft = parseInt(htmlObj.getAttribute('data-seconds-left'));
-      var numberOfDays = Math.floor( secondsLeft / ( 24 * 60 * 60 ) );
-      if (numberOfDays > 0) {
-        jQuery(htmlObj).find('.days').text(numberOfDays.toString() + ' ' + Translator.translate('day(s)'));
-        secondsLeft -= numberOfDays * 24 * 60 * 60;
-        htmlObj.setAttribute('data-seconds-left', secondsLeft);
-      } else {
-        jQuery(htmlObj).find('.days').text('');
-      }
+    this.setDaysSecondsSimpleTimer = function (obj, secs) {
+      var showDays = jQuery(obj).data('display-days');
+      var secLeft = secs;
+      if (showDays) {
+        var days = Math.floor( secLeft / ( 24 * 60 * 60 ) );
+        if (days > 0) {
+          var text = days.toString() + ' day(s)';// + Translator.translate('day(s)');
+          jQuery(obj).append('<span class="days">'+text+'</span>');
+          secLeft -= days * 24 * 60 * 60;
+        }
+      };
+      jQuery(obj).data('seconds-left', secLeft);
     };
 
     this.start = function () {
       var self = this;
-      // // translations for flipclock labels
+      // translations for flipclock labels
       // if (jQuery.isEmptyObject(FlipClock.Lang[self.localeName])) {
       //   FlipClock.Lang[self.localeName] = {
       //     'years' : Translator.translate('Years'),
@@ -42,39 +44,37 @@ define(["flipclock", "simpletimer"], function($) {
       //   }
       // };
       // start flip timer
-      jQuery(self.timerFlipClassSelector).each(
-        function (index, htmlObj) {
-          self.setAttributeSecondsLeft(htmlObj);
-          jQuery(htmlObj).FlipClock(
-            htmlObj.getAttribute('data-seconds-left'),
+      jQuery(self.timerNotStarted).filter(self.timerFlip).each(
+        function (index, obj) {
+          jQuery(obj).FlipClock(
+            self.getSecondsLeft(obj),
             {
-              clockFace: htmlObj.getAttribute('data-flipface'),
+              clockFace: jQuery(obj).data('flipface'),
               countdown: true,
               language: self.localeName
             }
           );
         }
-      ).removeClass(self.timerNotStartedClass);
+      ).removeClass(self.timerNotStarted.substring(1));
       // start simple timer
-      jQuery(self.timerSimpleClassSelector).html('<span class="days"></span>').each(
-        function (index, htmlObj) {
-          self.setAttributeSecondsLeft(htmlObj);
-          self.setDaysForSimpleTimer(htmlObj);
+      jQuery(self.timerNotStarted).filter(self.timerSimple).html('').each(
+        function (index, obj) {
+          self.setDaysSecondsSimpleTimer(obj, self.getSecondsLeft(obj));
         }
-      ).startTimer().removeClass(self.timerNotStartedClass);
-    };
+      ).startTimer().removeClass(self.timerNotStarted.substring(1));
+    }
 
-    // this.initEventsListening = function () {
-    //   // bind jQuery event
-    //   jQuery(document).on("tm:countdowntimer:start",
-    //     function (){tmCountdownTimers.start()}
-    //   );   
-    //   // listen prototype event
-    //   var eventsArr = ["quickshopping:previewloaded", "AjaxPro:onComplete:after"];
-    //   for (i=0; i<eventsArr.length; i++) {
-    //     document.observe(eventsArr[i], function (){tmCountdownTimers.start()});
-    //   }
-    // }
+    this.initEventsListening = function () {
+      // bind jQuery event
+      jQuery(document).on("tm:countdowntimer:start", function (){
+        tmCountdownTimers.start()
+      });   
+      // listen prototype event
+      var eventsArr = ["quickshopping:previewloaded", "AjaxPro:onComplete:after"];
+      for (var i=0; i<eventsArr.length; i++) {
+        document.observe(eventsArr[i], function (){tmCountdownTimers.start()});
+      }
+    }
 
   };
 
