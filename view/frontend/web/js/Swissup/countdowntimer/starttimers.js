@@ -1,4 +1,9 @@
-define(["flipclock", "simpletimer"], function($) {
+define([
+  "jquery",
+  "flipclock",
+  "simpletimer"
+], function($) {
+
   var tmCountdownTimers = new function() {
 
     this.timerFlip = '.tm-cdt-flip';
@@ -16,13 +21,13 @@ define(["flipclock", "simpletimer"], function($) {
       return secLeft;
     };
 
-    this.setDaysSecondsSimpleTimer = function (obj, secs) {
+    this.setDaysSecondsSimpleTimer = function (obj, secs, label) {
       var showDays = jQuery(obj).data('display-days');
       var secLeft = secs;
       if (showDays) {
         var days = Math.floor( secLeft / ( 24 * 60 * 60 ) );
         if (days > 0) {
-          var text = days.toString() + ' day(s)';// + Translator.translate('day(s)');
+          var text = days.toString() + ' ' + label;
           jQuery(obj).append('<span class="days">'+text+'</span>');
           secLeft -= days * 24 * 60 * 60;
         }
@@ -30,19 +35,12 @@ define(["flipclock", "simpletimer"], function($) {
       jQuery(obj).data('seconds-left', secLeft);
     };
 
-    this.start = function () {
+    this.start = function (labels) {
       var self = this;
       // translations for flipclock labels
-      // if (jQuery.isEmptyObject(FlipClock.Lang[self.localeName])) {
-      //   FlipClock.Lang[self.localeName] = {
-      //     'years' : Translator.translate('Years'),
-      //     'months' : Translator.translate('Months'),
-      //     'days' : Translator.translate('Days'),
-      //     'hours' : Translator.translate('Hours'),
-      //     'minutes' : Translator.translate('Minutes'),
-      //     'seconds' : Translator.translate('Seconds')
-      //   }
-      // };
+      if (jQuery.isEmptyObject(FlipClock.Lang[self.localeName])) {
+        FlipClock.Lang[self.localeName] = labels
+      };
       // start flip timer
       jQuery(self.timerNotStarted).filter(self.timerFlip).each(
         function (index, obj) {
@@ -59,7 +57,7 @@ define(["flipclock", "simpletimer"], function($) {
       // start simple timer
       jQuery(self.timerNotStarted).filter(self.timerSimple).html('').each(
         function (index, obj) {
-          self.setDaysSecondsSimpleTimer(obj, self.getSecondsLeft(obj));
+          self.setDaysSecondsSimpleTimer(obj, self.getSecondsLeft(obj), labels['day(s)']);
         }
       ).startTimer().removeClass(self.timerNotStarted.substring(1));
     }
@@ -67,12 +65,12 @@ define(["flipclock", "simpletimer"], function($) {
     this.initEventsListening = function () {
       // bind jQuery event
       jQuery(document).on("tm:countdowntimer:start", function (){
-        tmCountdownTimers.start()
+        tmCountdownTimers.start({})
       });   
       // listen prototype event
       var eventsArr = ["quickshopping:previewloaded", "AjaxPro:onComplete:after"];
       for (var i=0; i<eventsArr.length; i++) {
-        document.observe(eventsArr[i], function (){tmCountdownTimers.start()});
+        document.observe(eventsArr[i], function (){tmCountdownTimers.start({})});
       }
     }
 

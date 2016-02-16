@@ -1,6 +1,15 @@
 <script type="text/javascript">
   require(['starttimers'],
     function (timers) {
-      timers.start()
+    	var labels = {
+        'years' : '<?php echo __('Years')?>',
+        'months' : '<?php echo __('Months')?>',
+        'days' : '<?php echo __('Days')?>',
+        'hours' : '<?php echo __('Hours')?>',
+        'minutes' : '<?php echo __('Minutes')?>',
+        'seconds' : '<?php echo __('Seconds')?>',
+        'day(s)' : '<?php echo __('day(s)')?>'
+      }
+      timers.start(labels);
     });
 </script>
