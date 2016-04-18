@@ -9,69 +9,74 @@ define([
     this.timerFlip = '.tm-cdt-flip';
     this.timerSimple = '.tm-cdt-simple';
     this.timerNotStarted ='.not-started';
-    this.localeName = 'customer_locale',
+    var _timerLabels = {};
+    var _localeName = 'cu_LO'; // customer locale
+    var _self = this;
 
-    this.getSecondsLeft = function (obj) {
-      var endDate = jQuery(obj).data('end-datetime-utc');
-      var secLeft = 0;
-      if (endDate) {
-        secLeft = endDate - Math.floor(Date.now() / 1000);
-        secLeft = (secLeft < 0) ? 0 : secLeft;
-      }
-      return secLeft;
-    };
-
-    this.setDaysSecondsSimpleTimer = function (obj, secs, label) {
-      var showDays = jQuery(obj).data('display-days');
-      var secLeft = secs;
-      if (showDays) {
-        var days = Math.floor( secLeft / ( 24 * 60 * 60 ) );
-        if (days > 0) {
-          var text = days.toString() + ' ' + label;
-          jQuery(obj).append('<span class="days">'+text+'</span>');
-          secLeft -= days * 24 * 60 * 60;
-        }
+    var _initFonts = function (){
+      WebFontConfig = {
+        google: { families: [ 'Fredoka+One::latin', 'Josefin+Sans::latin' ] }
       };
-      jQuery(obj).data('seconds-left', secLeft);
-    };
-
-    this.start = function (labels) {
-      var self = this;
-      // translations for flipclock labels
-      if (jQuery.isEmptyObject(FlipClock.Lang[self.localeName])) {
-        FlipClock.Lang[self.localeName] = labels
-      };
-      // start flip timer
-      jQuery(self.timerNotStarted).filter(self.timerFlip).each(
-        function (index, obj) {
-          jQuery(obj).FlipClock(
-            self.getSecondsLeft(obj),
-            {
-              clockFace: jQuery(obj).data('flipface'),
-              countdown: true,
-              language: self.localeName
-            }
-          );
-        }
-      ).removeClass(self.timerNotStarted.substring(1));
-      // start simple timer
-      jQuery(self.timerNotStarted).filter(self.timerSimple).html('').each(
-        function (index, obj) {
-          self.setDaysSecondsSimpleTimer(obj, self.getSecondsLeft(obj), labels['day(s)']);
-        }
-      ).startTimer().removeClass(self.timerNotStarted.substring(1));
+      (function() {
+        var wf = document.createElement('script');
+        wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+      })();
     }
 
-    this.initEventsListening = function () {
-      // bind jQuery event
-      jQuery(document).on("tm:countdowntimer:start", function (){
-        tmCountdownTimers.start({})
-      });   
-      // listen prototype event
-      var eventsArr = ["quickshopping:previewloaded", "AjaxPro:onComplete:after"];
-      for (var i=0; i<eventsArr.length; i++) {
-        document.observe(eventsArr[i], function (){tmCountdownTimers.start({})});
+    var _getSecondsLeft = function(obj){
+      var end = $(obj).data('end-datetime-utc');
+      var left = 0;
+      if (end) {
+        left = end - Math.floor(Date.now() / 1000);
+        left = (left < 0) ? 0 : left;
       }
+      return left;
+    };
+
+    var _startFlipClock = function(obj){
+      obj.each(function(i, el){
+        $(el).FlipClock(
+          _getSecondsLeft(el),
+          {
+            clockFace: $(el).data('flipface'),
+            countdown: true,
+            language: _localeName
+          }
+        );
+      });
+    }
+
+    var _startSimpleTimer = function(obj){
+      // prepare data for start
+      obj.html('').each(function(i, el){
+        var secLeft = _getSecondsLeft(el);
+        if ($(el).data('display-days')) {
+          var days = Math.floor( secLeft / ( 24 * 60 * 60 ) );
+          if (days > 0) {
+            secLeft -= days * 24 * 60 * 60;
+            var text = days.toString() + ' ' + _timerLabels['day(s)'];
+            $(el).append('<span class="days">'+text+'</span>');
+          }
+        };
+        $(el).data('seconds-left', secLeft);
+      });
+      obj.startTimer();
+    }
+
+    this.start = function(labels){
+      if ($.isEmptyObject(_timerLabels)) {
+        _timerLabels = labels;
+        FlipClock.Lang[_localeName] = _timerLabels;
+      }
+      // _initFonts();
+      var timers = $(_self.timerNotStarted);
+      _startFlipClock(timers.filter(_self.timerFlip));
+      _startSimpleTimer(timers.filter(_self.timerSimple));
+      timers.removeClass(_self.timerNotStarted.substring(1));
     }
 
   };
