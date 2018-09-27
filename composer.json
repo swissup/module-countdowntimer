@@ -1,8 +1,8 @@
 {
-    "name": "swissup/countdowntimer",
+    "name": "swissup/module-countdowntimer",
     "description": "Countdown timer widgets",
     "type": "magento2-module",
-    "version": "0.9.0",
+    "version": "0.10.0",
     "license": "OSL-3.0",
     "autoload": {
         "files": [ "registration.php" ],
