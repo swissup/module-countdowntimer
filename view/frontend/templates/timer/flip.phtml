@@ -1,12 +1,1 @@
-<div<?php
-    echo ' class="'.$this->getClassname().'"';
-    if ($this->getFlipface()) {
-        echo ' data-flipface="'.$this->getFlipface().'"';
-    }
-    if ($this->hasData('date')) {
-        echo ' data-end-datetime-utc="'.$this->getDateInTimestamp().'"';
-    }
-    if (!$this->hasData('date') && $this->getSecondsLeft()) {
-        echo ' data-seconds-left="'.$this->getSecondsLeft().'"';
-    }
-?>>Timer can not find jQuery</div>
+<div data-mage-init='{"Swissup_Countdowntimer/js/flipclock/start": {"datetimeUtc": "<?= $block->getDateInTimestamp() ?>", "cssClass": "<?= $block->getClassname() ?>", "options": {"clockFace": "<?= $block->getFlipface() ?>"}}}'></div>

@@ -2,12 +2,7 @@
 <!--   -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-        <css src="Swissup_Countdowntimer::js/swissup/countdowntimer/flipclock/flipclock.css"/>
-        <css src="Swissup_Countdowntimer::css/swissup/countdowntimer.css"/>
+        <css src="Swissup_Countdowntimer::js/flipclock/flipclock.css"/>
+        <css src="Swissup_Countdowntimer::css/countdowntimer.css"/>
     </head>
-    <body>
-        <referenceContainer name="before.body.end">
-            <block class="Magento\Framework\View\Element\Template" name="swissup.cdt.start" template="Swissup_Countdowntimer::timer/startall.phtml" />
-        </referenceContainer>
-    </body>
 </page>
