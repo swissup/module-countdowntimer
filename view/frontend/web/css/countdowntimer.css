@@ -59,14 +59,3 @@
 .simpletimer .minutes { display: inline-block; }
 .simpletimer .seconds { display: inline-block; }
 .simpletimer .clearDiv { clear: both; }
-.cmyk {
-  font-family: 'Fredoka One', sans-serif;
-  letter-spacing: .05em;
-  text-shadow: .07em -.07em rgba(255,0,255,0.75), -.07em -.07em rgba(0,255,255,0.75), 0 .1em rgba(255,255,0,0.75);
-}
-.thin-shadow {
-  font-family: 'Josefin Sans', sans-serif;
-  font-weight: bolder;
-  letter-spacing: .05em;
-  text-shadow: .04em .04em 0 #fff, .07em .07em 0 rgba(54, 54, 54, 0.5);
-}
